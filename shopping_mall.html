@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<head>
+    <title>Item Table</title>
+    <style>
+        table {
+            width: 90%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 3px solid ;
+            color:black;
+            padding: 5px;
+            text-align: center;
+        }
+        
+        img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+        button {
+            padding: 5px 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        
+        
+    </style>
+</head>
+<body>
+
+<h1>Product Table</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>Image</th>
+            <th>Stock</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>BOOK 1</td>
+            <td><img src="C:\Users\satya\OneDrive\Pictures\Saved Pictures\book1.jpeg " alt="Item 1"></td>
+            <td>Available</td>
+            <td>400.00</td>
+            <td><button onclick="addToCart(' BOOK 1')">Add to Cart</button></td>
+        </tr>
+        <tr>
+            <td> BOOK 2</td>
+            <td><img src="C:\Users\satya\OneDrive\Pictures\Saved Pictures\book2.jpeg " alt="Item 2"></td>
+            <td>Out of Stock</td>
+            <td>150.00</td>
+            <td><button onclick="addToCart('BOOK 2')" disabled>Add to Cart</button></td>
+        </tr>
+        <tr>
+            <td>BOOK 3</td>
+            <td><img src="C:\Users\satya\OneDrive\Pictures\Saved Pictures\book3.jpeg" alt="Item 3"></td>
+            <td>Available</td>
+            <td>250.00</td>
+            <td><button onclick="addToCart('BOOK 3')">Add to Cart</button></td>
+        </tr>
+        <tr>
+            <td> BOOK 4</td>
+            <td><img src="C:\Users\satya\OneDrive\Pictures\Saved Pictures\book4.jpeg" alt="Item 3"></td>
+            <td>Available</td>
+            <td>300.00</td>
+            <td><button onclick="addToCart('BOOK 4')">Add to Cart</button></td>
+        </tr>
+        
+
+
+
+    </tbody>
+</table>
+
+<script>
+    function addToCart(itemName) {
+        alert(itemName + ' has been added to your cart!');
+    }
+</script>
+
+</body>
+</html>
