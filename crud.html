@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CRUD </title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f6fa;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2f3640;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background-color: white;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+
+    input[type="text"], input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #0984e3;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 5px;
+    }
+
+    button:hover {
+      background-color: #74b9ff;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .actions button {
+      background-color: #fdcb6e;
+      color: #2d3436;
+    }
+
+    .actions button:hover {
+      background-color: #ffeaa7;
+    }
+
+    .delete-btn {
+      background-color: #d63031;
+      color: white;
+    }
+
+    .delete-btn:hover {
+      background-color: #ff7675;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Details</h2>
+
+    <input type="text" id="name" placeholder="Enter name">
+    <input type="email" id="email" placeholder="Enter email">
+    <button onclick="addData()">Save</button>
+
+    <table id="dataTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Data goes here -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    let selectedRow = null;
+
+    function addData() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+
+      if (name === "" || email === "") {
+        alert("Please fill all fields.");
+        return;
+      }
+
+      if (selectedRow) {
+        selectedRow.cells[0].innerText = name;
+        selectedRow.cells[1].innerText = email;
+        selectedRow = null;
+      } else {
+        const table = document.getElementById("dataTable").getElementsByTagName("tbody")[0];
+        const newRow = table.insertRow();
+        newRow.insertCell(0).innerText = name;
+        newRow.insertCell(1).innerText = email;
+        newRow.insertCell(2).innerHTML = `
+          <div class="actions">
+            <button onclick="editRow(this)">Edit</button>
+            <button class="delete-btn" onclick="deleteRow(this)">Delete</button>
+          </div>
+        `;
+      }
+
+      document.getElementById("name").value = "";
+      document.getElementById("email").value = "";
+    }
+
+    function editRow(button) {
+      selectedRow = button.parentElement.parentElement.parentElement;
+      document.getElementById("name").value = selectedRow.cells[0].innerText;
+      document.getElementById("email").value = selectedRow.cells[1].innerText;
+    }
+
+    function deleteRow(button) {
+      const row = button.parentElement.parentElement.parentElement;
+      row.remove();
+      if (selectedRow === row) {
+        selectedRow = null;
+      }
+    }
+  </script>
+
+</body>
+</html>
